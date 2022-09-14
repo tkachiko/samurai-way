@@ -1,0 +1,12 @@
+.main {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.main img {
+  width: 1200px;
+}
+
+.main > div > img {
+  width: 250px;
+}

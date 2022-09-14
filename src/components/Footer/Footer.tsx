@@ -1,9 +1,9 @@
 import React from 'react';
-import './../App.css'
+import s from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <div className={'footer'}>
+    <div className={s.footer}>
       it-incubator.com
     </div>
   )

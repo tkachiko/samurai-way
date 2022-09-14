@@ -1,9 +1,9 @@
 import React from 'react';
-import './../App.css'
+import s from './Navbar.module.css';
 
 function Navbar() {
   return (
-    <nav className={'nav'}>
+    <nav className={s.nav}>
       <ul>
         <li><a href={'./settings'}>Profile</a></li>
         <li><a href={'#'}>Messages</a></li>
