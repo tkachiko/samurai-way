@@ -4,6 +4,19 @@
   background-color: darkslategrey;
 }
 
-ul li {
+.nav ul {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.item {
   list-style: none;
+}
+
+.item {
+  color: white;
+}
+
+.item.active {
+  color: gold;
 }

@@ -5,11 +5,11 @@ function Navbar() {
   return (
     <nav className={s.nav}>
       <ul>
-        <li><a href={'./settings'}>Profile</a></li>
-        <li><a href={'#'}>Messages</a></li>
-        <li><a href={'#'}>News</a></li>
-        <li><a href={'#'}>Music</a></li>
-        <li><a href={'#'}>Settings</a></li>
+        <li className={s.item}><a>Profile</a></li>
+        <li className={`${s.item} ${s.active}`}><a>Messages</a></li>
+        <li className={s.item}><a>News</a></li>
+        <li className={s.item}><a>Music</a></li>
+        <li className={s.item}><a>Settings</a></li>
       </ul>
     </nav>
   )
