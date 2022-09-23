@@ -1,28 +1,19 @@
 import React from 'react';
 import s from './Navbar.module.css';
+import Link from './Link';
 
 function Navbar() {
   return (
     <nav className={s.nav}>
       <ul>
-        <li className={s.item}>
-          <a>Profile</a>
-        </li>
-        <li className={`${s.item} ${s.active}`}>
-          <a>Messages</a>
-        </li>
-        <li className={s.item}>
-          <a>News</a>
-        </li>
-        <li className={s.item}>
-          <a>Music</a>
-        </li>
-        <li className={s.item}>
-          <a>Settings</a>
-        </li>
+        <Link url={'./profile'} title={'Profile'}/>
+        <Link url={'./dialogs'} title={'Messages'}/>
+        <Link url={'./news'} title={'News'}/>
+        <Link url={'./music'} title={'Music'}/>
+        <Link url={'./settings'} title={'Settings'}/>
       </ul>
     </nav>
-  )
+  );
 }
 
 export default Navbar;

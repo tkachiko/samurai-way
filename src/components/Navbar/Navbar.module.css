@@ -2,6 +2,7 @@
   grid-column: 1/2;
   grid-row: 2/3;
   background-color: darkslategrey;
+  padding: 20px;
 }
 
 .nav ul {
@@ -13,8 +14,14 @@
   list-style: none;
 }
 
-.item {
+.item a {
   color: white;
+  text-decoration: none;
+}
+
+.item a.activeLink {
+  font-weight: bold;
+  color: rosybrown;
 }
 
 .item.active {
