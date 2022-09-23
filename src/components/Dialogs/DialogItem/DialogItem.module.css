@@ -1,0 +1,10 @@
+.dialog a {
+  color: black;
+  text-decoration: none;
+
+}
+
+.dialog a.activeLink {
+  font-weight: bold;
+  color: rosybrown;
+}
