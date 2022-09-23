@@ -2,12 +2,11 @@
   grid-column: 1/2;
   grid-row: 2/3;
   background-color: darkslategrey;
-  padding: 20px;
 }
 
 .nav ul {
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px;
 }
 
 .item {
@@ -22,8 +21,4 @@
 .item a.activeLink {
   font-weight: bold;
   color: rosybrown;
-}
-
-.item.active {
-  color: gold;
 }
