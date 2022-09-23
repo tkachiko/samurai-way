@@ -1,0 +1,11 @@
+.main img {
+  width: 1200px;
+}
+
+.main > div > img {
+  width: 250px;
+}
+
+.descriptionBlock {
+  padding: 10px;
+}
