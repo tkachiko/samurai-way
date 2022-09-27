@@ -1,13 +1,18 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
+import {PostsDataType} from '../../index';
 
-const Profile = () => {
+type ProfileType = {
+  posts: PostsDataType[]
+}
+
+const Profile = (props: ProfileType) => {
   return (
     <div>
       <div>
         <ProfileInfo/>
-        <MyPosts/>
+        <MyPosts posts={props.posts}/>
       </div>
     </div>
   );

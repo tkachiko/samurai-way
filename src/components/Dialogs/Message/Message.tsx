@@ -3,7 +3,7 @@ import styles from './Message.module.css';
 
 type MessagePropsType = {
   message: string
-  id?: number
+  id: string
 }
 
 const Message = (props: MessagePropsType) => {

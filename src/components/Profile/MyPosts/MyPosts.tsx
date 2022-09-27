@@ -1,20 +1,14 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
+import {PostsDataType} from '../../../index';
 
-type PostsDataType = {
-  id: number
-  message: string
-  likesCount: number
+type MyPostsType = {
+  posts: PostsDataType[]
 }
 
-const MyPosts = () => {
-  const posts: PostsDataType[] = [
-    {id: 1, message: 'It\'s my first post', likesCount: 17},
-    {id: 2, message: 'Hi, how are you?', likesCount: 5},
-  ];
-
-  const postsElements = posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount} key={p.id}/>);
+const MyPosts = (props: MyPostsType) => {
+const postsElements = props.posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount} key={p.id}/>);
 
   return (
     <div className={styles.postsBlock}>My posts
