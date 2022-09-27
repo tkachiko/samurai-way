@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
 type PostsDataType = {
@@ -17,7 +17,7 @@ const MyPosts = () => {
   const postsElements = posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount} key={p.id}/>);
 
   return (
-    <div className={s.postsBlock}>My posts
+    <div className={styles.postsBlock}>My posts
       <div>
         <div>
           <textarea></textarea>
@@ -26,7 +26,7 @@ const MyPosts = () => {
           <button>Add</button>
         </div>
       </div>
-      <div className={s.posts}>{postsElements}</div>
+      <div className={styles.posts}>{postsElements}</div>
     </div>
   );
 };

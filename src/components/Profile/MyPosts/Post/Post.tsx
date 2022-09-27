@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Post.module.css';
+import styles from './Post.module.css';
 
 type PostType = {
   id: number
@@ -9,7 +9,7 @@ type PostType = {
 
 const Post = (props: PostType) => {
   return (
-    <div className={s.item}>
+    <div className={styles.item}>
       <img src={'https://thumbs.dreamstime.com/b/frenchbulldog-198912643.jpg'} alt={'user avatar'}/>
       {props.message}
       <div>
