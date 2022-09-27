@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Post.module.css';
 
 type PostType = {
+  id: number
   message: string
   like: number
 }
@@ -15,7 +16,7 @@ const Post = (props: PostType) => {
         <span>like</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Post;
