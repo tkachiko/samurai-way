@@ -11,7 +11,7 @@ type AppType = {
   state: StateType
 }
 
-const App = (props: AppType) => {
+const App: React.FC<AppType> = (props ) => {
   return (
     <BrowserRouter>
       <div className={'appWrapper'}>

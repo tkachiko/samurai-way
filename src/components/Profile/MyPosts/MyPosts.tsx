@@ -7,7 +7,7 @@ type MyPostsType = {
   posts: PostsDataType[]
 }
 
-const MyPosts = (props: MyPostsType) => {
+const MyPosts: React.FC<MyPostsType> = (props) => {
 const postsElements = props.posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount} key={p.id}/>);
 
   return (

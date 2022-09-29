@@ -6,7 +6,7 @@ type MessagePropsType = {
   id: string
 }
 
-const Message = (props: MessagePropsType) => {
+const Message: React.FC<MessagePropsType> = (props) => {
   return (
     <div className={styles.dialog}>{props.message}</div>
   );
