@@ -1,4 +1,5 @@
 import {v1} from 'uuid';
+import {renderTree} from '../renderTree';
 
 export type DialogsDataType = {
   id: string
@@ -16,6 +17,7 @@ export type MessagesDataType = {
 
 type ProfilePageType = {
   posts: PostsDataType[]
+  newPostText: string
 }
 type DialogsPageType = {
   dialogs: DialogsDataType[]
@@ -33,6 +35,7 @@ export const state: StateType = {
       {id: v1(), message: 'It\'s my first post', likesCount: 17},
       {id: v1(), message: 'Hi, how are you?', likesCount: 5},
     ],
+    newPostText: 'it-kamasutra.com',
   },
   dialogsPage: {
     dialogs: [
@@ -48,4 +51,20 @@ export const state: StateType = {
       {id: v1(), message: 'Let\'s go!'},
     ],
   }
+};
+
+export const addPost = () => {
+  const newPost: PostsDataType = {
+    id: v1(),
+    message: state.profilePage.newPostText,
+    likesCount: 0
+  };
+  state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  renderTree(state);
+};
+
+export const updateNewPostText = (text: string) => {
+  state.profilePage.newPostText = text;
+  renderTree(state);
 };
