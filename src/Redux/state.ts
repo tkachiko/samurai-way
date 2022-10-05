@@ -1,5 +1,8 @@
 import {v1} from 'uuid';
-import {renderTree} from '../renderTree';
+
+let renderTree = (state: StateType) => {
+  console.log(state);
+}
 
 export type DialogsDataType = {
   id: string
@@ -68,3 +71,7 @@ export const updateNewPostText = (text: string) => {
   state.profilePage.newPostText = text;
   renderTree(state);
 };
+
+export const subscribe = (observer: (state: StateType) => void) => {
+  renderTree = observer
+}
