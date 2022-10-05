@@ -1,9 +1,5 @@
 import {v1} from 'uuid';
 
-let renderTree = (state: StateType) => {
-  console.log(state);
-}
-
 export type DialogsDataType = {
   id: string
   name: string
@@ -32,46 +28,61 @@ export type StateType = {
   dialogsPage: DialogsPageType
 }
 
-export const state: StateType = {
-  profilePage: {
-    posts: [
-      {id: v1(), message: 'It\'s my first post', likesCount: 17},
-      {id: v1(), message: 'Hi, how are you?', likesCount: 5},
-    ],
-    newPostText: 'it-kamasutra.com',
+export type StoreType = {
+  _state: StateType
+  getState: () => StateType
+  _callSubscriber: () => void
+  addPost: () => void
+  updateNewPostText: (text: string) => void
+  subscribe: (observer: () => void) => void
+}
+
+
+export const store: StoreType = {
+  _state: {
+    profilePage: {
+      posts: [
+        {id: v1(), message: 'It\'s my first post', likesCount: 17},
+        {id: v1(), message: 'Hi, how are you?', likesCount: 5},
+      ],
+      newPostText: 'it-kamasutra.com',
+    },
+    dialogsPage: {
+      dialogs: [
+        {id: v1(), name: 'Emmett'},
+        {id: v1(), name: 'Marty'},
+        {id: v1(), name: 'Jennifer'},
+        {id: v1(), name: 'Lorraine'},
+        {id: v1(), name: 'George'},
+      ],
+      messages: [
+        {id: v1(), message: 'Hey!'},
+        {id: v1(), message: 'How are you?'},
+        {id: v1(), message: 'Let\'s go!'},
+      ],
+    }
   },
-  dialogsPage: {
-    dialogs: [
-      {id: v1(), name: 'Emmett'},
-      {id: v1(), name: 'Marty'},
-      {id: v1(), name: 'Jennifer'},
-      {id: v1(), name: 'Lorraine'},
-      {id: v1(), name: 'George'},
-    ],
-    messages: [
-      {id: v1(), message: 'Hey!'},
-      {id: v1(), message: 'How are you?'},
-      {id: v1(), message: 'Let\'s go!'},
-    ],
+  getState() {
+    return this._state;
+  },
+  _callSubscriber() {
+    console.log();
+  },
+  addPost() {
+    const newPost: PostsDataType = {
+      id: v1(),
+      message: this._state.profilePage.newPostText,
+      likesCount: 0
+    };
+    this._state.profilePage.posts.push(newPost);
+    this._state.profilePage.newPostText = '';
+    this._callSubscriber();
+  },
+  updateNewPostText(text: string) {
+    this._state.profilePage.newPostText = text;
+    this._callSubscriber();
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
   }
 };
-
-export const addPost = () => {
-  const newPost: PostsDataType = {
-    id: v1(),
-    message: state.profilePage.newPostText,
-    likesCount: 0
-  };
-  state.profilePage.posts.push(newPost);
-  state.profilePage.newPostText = '';
-  renderTree(state);
-};
-
-export const updateNewPostText = (text: string) => {
-  state.profilePage.newPostText = text;
-  renderTree(state);
-};
-
-export const subscribe = (observer: (state: StateType) => void) => {
-  renderTree = observer
-}
