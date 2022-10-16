@@ -20,6 +20,7 @@ type ProfilePageType = {
 type DialogsPageType = {
   dialogs: DialogsDataType[]
   messages: MessagesDataType[]
+  newMessageBody: string
 }
 export type StateType = {
   profilePage: ProfilePageType
@@ -32,12 +33,16 @@ export type StoreType = {
   subscribe: (observer: () => void) => void
   dispatch: (action: ActionsTypes) => void
 }
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-export type AddPostActionType = ReturnType<typeof addPostAC>
-export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+export type ActionsTypes =
+  ReturnType<typeof addPostAC>
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof sendMessageAC>
+  | ReturnType<typeof updateNewMessageBodyAC>
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 export const store: StoreType = {
   _state: {
@@ -61,6 +66,7 @@ export const store: StoreType = {
         {id: v1(), message: 'How are you?'},
         {id: v1(), message: 'Let\'s go!'},
       ],
+      newMessageBody: '',
     }
   },
   _callSubscriber() {
@@ -75,18 +81,34 @@ export const store: StoreType = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      const newPost: PostsDataType = {
-        id: v1(),
-        message: this._state.profilePage.newPostText,
-        likesCount: 0
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber();
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.text;
-      this._callSubscriber();
+    switch (action.type) {
+      case ADD_POST:
+        const newPost: PostsDataType = {
+          id: v1(),
+          message: this._state.profilePage.newPostText,
+          likesCount: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber();
+        break;
+      case UPDATE_NEW_POST_TEXT:
+        this._state.profilePage.newPostText = action.text;
+        this._callSubscriber();
+        break;
+      case SEND_MESSAGE:
+        const newMessage: MessagesDataType = {
+          id: v1(),
+          message: this._state.dialogsPage.newMessageBody,
+        };
+        this._state.dialogsPage.newMessageBody = '';
+        this._state.dialogsPage.messages.push(newMessage);
+        this._callSubscriber();
+        break;
+      case UPDATE_NEW_MESSAGE_BODY:
+        this._state.dialogsPage.newMessageBody = action.text;
+        this._callSubscriber();
+        break;
     }
   }
 };
@@ -98,6 +120,18 @@ export const addPostAC = (text: string) => ({
 );
 export const updateNewPostTextAC = (text: string) => ({
     type: UPDATE_NEW_POST_TEXT,
+    text: text
+  } as const
+);
+
+export const sendMessageAC = (text: string) => ({
+    type: SEND_MESSAGE,
+    text
+  } as const
+);
+
+export const updateNewMessageBodyAC = (text: string) => ({
+    type: UPDATE_NEW_MESSAGE_BODY,
     text: text
   } as const
 );
