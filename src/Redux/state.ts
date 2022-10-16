@@ -13,7 +13,6 @@ export type MessagesDataType = {
   id: string
   message: string
 }
-
 type ProfilePageType = {
   posts: PostsDataType[]
   newPostText: string
@@ -22,12 +21,10 @@ type DialogsPageType = {
   dialogs: DialogsDataType[]
   messages: MessagesDataType[]
 }
-
 export type StateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogsPageType
 }
-
 export type StoreType = {
   _state: StateType
   getState: () => StateType
@@ -35,18 +32,12 @@ export type StoreType = {
   subscribe: (observer: () => void) => void
   dispatch: (action: ActionsTypes) => void
 }
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export type AddPostActionType = ReturnType<typeof addPostAC>
+export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
-
-export type AddPostActionType = {
-  type: 'ADD-POST',
-  text: string
-}
-
-export type UpdateNewPostTextActionType = {
-  type: 'UPDATE-NEW-POST-TEXT',
-  text: string
-}
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 export const store: StoreType = {
   _state: {
@@ -84,7 +75,7 @@ export const store: StoreType = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       const newPost: PostsDataType = {
         id: v1(),
         message: this._state.profilePage.newPostText,
@@ -93,9 +84,20 @@ export const store: StoreType = {
       this._state.profilePage.posts.push(newPost);
       this._state.profilePage.newPostText = '';
       this._callSubscriber();
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.text;
       this._callSubscriber();
     }
   }
 };
+
+export const addPostAC = (text: string) => ({
+    type: ADD_POST,
+    text
+  } as const
+);
+export const updateNewPostTextAC = (text: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    text: text
+  } as const
+);
