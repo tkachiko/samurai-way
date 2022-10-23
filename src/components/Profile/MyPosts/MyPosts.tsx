@@ -4,8 +4,8 @@ import Post from './Post/Post';
 import {
   ActionsTypes,
   PostsDataType,
-} from '../../../Redux/state';
-import {addPostAC, updateNewPostTextAC} from '../../../Redux/profile-reducer';
+} from '../../../redux/store';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
 
 type MyPostsType = {
   posts: PostsDataType[]
