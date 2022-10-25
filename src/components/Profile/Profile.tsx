@@ -1,7 +1,7 @@
 import React from 'react';
-import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
-import {ActionsTypes, PostsDataType} from '../../redux/store';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
+import {ActionsTypes, PostsDataType} from '../../types/types';
 
 type ProfileType = {
   posts: PostsDataType[]
@@ -14,7 +14,7 @@ const Profile: React.FC<ProfileType> = (props) => {
     <div>
       <div>
         <ProfileInfo/>
-        <MyPosts posts={props.posts}
+        <MyPostsContainer posts={props.posts}
                  newPostText={props.newPostText}
                  dispatch={props.dispatch}
         />

@@ -4,8 +4,8 @@ import {Header} from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Dialogs from './components/Dialogs/Dialogs';
 import {ActionsTypes, StateType} from './redux/store';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 type AppType = {
   state: StateType
@@ -20,7 +20,7 @@ const App: React.FC<AppType> = (props) => {
         <Navbar/>
         <div className="app-wrapper-content">
           <Route path={'/dialogs'}
-                 render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs}
+                 render={() => <DialogsContainer dialogs={props.state.dialogsPage.dialogs}
                                         dispatch={props.dispatch}
                                         messages={props.state.dialogsPage.messages}
                                         newMessageBody={props.state.dialogsPage.newMessageBody}
