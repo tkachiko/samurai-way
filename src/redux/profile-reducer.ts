@@ -1,10 +1,20 @@
 import {v1} from 'uuid';
-import {ActionsTypes, PostsDataType} from '../types/types';
+import {ActionsTypes} from '../types/types';
 
 export const ADD_POST = 'ADD-POST';
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-type InitialStateType = typeof initialState;
+export type PostsDataType = {
+  id: string
+  message: string
+  likesCount: number
+}
+export type ProfilePageType = {
+  posts: PostsDataType[]
+  newPostText: string
+}
+
+type InitialStateType = typeof initialState
 
 const initialState = {
   posts: [

@@ -1,9 +1,23 @@
 import {v1} from 'uuid';
-import {ActionsTypes, DialogsDataType, MessagesDataType} from '../types/types';
+import {ActionsTypes} from '../types/types';
 export const SEND_MESSAGE = 'SEND-MESSAGE';
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 type InitialStateType = typeof initialState;
+
+export type DialogsDataType = {
+  id: string
+  name: string
+}
+export type MessagesDataType = {
+  id: string
+  message: string
+}
+export type DialogsPageType = {
+  dialogs: DialogsDataType[]
+  messages: MessagesDataType[]
+  newMessageBody: string
+}
 
 const initialState = {
   dialogs: [

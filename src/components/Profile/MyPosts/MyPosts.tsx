@@ -1,20 +1,13 @@
 import React, {ChangeEvent} from 'react';
 import styles from './MyPosts.module.css';
-import {PostsDataType} from '../../../redux/store';
 import Post from './Post/Post';
+import {MyPostsPropsType} from './MyPostsContainer';
 
-type MyPostsType = {
-  posts: PostsDataType[]
-  newPostText: string
-  addPost: () => void
-  updateNewPostText: (text: string) => void
-}
-
-const MyPosts: React.FC<MyPostsType> = (props) => {
-  const postsElements = props.posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount} key={p.id}/>);
+const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+  const postsElements = props.profilePage.posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount} key={p.id}/>);
 
   const addPost = () => {
-    props.addPost();
+    props.addPost(props.profilePage.newPostText);
   };
 
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,7 +19,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
       <div>
         <div>
           <textarea onChange={onPostChange}
-                    value={props.newPostText}
+                    value={props.profilePage.newPostText}
           />
         </div>
         <div>
