@@ -22,22 +22,27 @@ const initialState = {
     {id: v1(), message: 'Hi, how are you?', likesCount: 5},
   ] as Array<PostsDataType>,
   newPostText: 'it-kamasutra.com' as string,
-}
+};
 
-export const profileReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
+export const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       const newPost: PostsDataType = {
         id: v1(),
         message: state.newPostText,
         likesCount: 0
       };
-      state.posts.push(newPost);
-      state.newPostText = '';
-      return state;
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.text;
-      return state;
+      const stateCopy = {...state};
+      stateCopy.posts = [...state.posts];
+      stateCopy.posts.push(newPost);
+      stateCopy.newPostText = '';
+      return stateCopy;
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      const stateCopy = {...state};
+      stateCopy.newPostText = action.text;
+      return stateCopy;
+    }
     default:
       return state;
   }
