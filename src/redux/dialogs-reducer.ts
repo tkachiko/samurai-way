@@ -1,5 +1,6 @@
 import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
+
 export const SEND_MESSAGE = 'SEND-MESSAGE';
 export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
@@ -33,21 +34,25 @@ const initialState = {
     {id: v1(), message: 'Let\'s go!'},
   ] as Array<MessagesDataType>,
   newMessageBody: '' as string,
-}
+};
 
-export const dialogsReducer = (state= initialState, action: ActionsTypes): InitialStateType => {
+export const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
     case SEND_MESSAGE:
       const newMessage: MessagesDataType = {
         id: v1(),
         message: state.newMessageBody,
       };
-      state.newMessageBody = '';
-      state.messages.push(newMessage);
-      return state;
+      return {
+        ...state,
+        newMessageBody: '',
+        messages: [...state.messages, newMessage]
+      };
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.text;
-      return state;
+      return {
+        ...state,
+        newMessageBody: action.text
+      };
     default:
       return state;
   }
