@@ -1,8 +1,8 @@
 import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
 
-export const SEND_MESSAGE = 'SEND-MESSAGE';
-export const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+export const SEND_MESSAGE = 'samurai-way/dialogs/SEND-MESSAGE';
+export const UPDATE_NEW_MESSAGE_BODY = 'samurai-way/dialogs/UPDATE-NEW-MESSAGE-BODY';
 
 type InitialStateType = typeof initialState;
 

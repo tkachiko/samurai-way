@@ -1,8 +1,8 @@
 import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
 
-export const ADD_POST = 'ADD-POST';
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+export const ADD_POST = 'samurai-way/profile/ADD-POST';
+export const UPDATE_NEW_POST_TEXT = 'samurai-way/profile/UPDATE-NEW-POST-TEXT';
 
 export type PostsDataType = {
   id: string
