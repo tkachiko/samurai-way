@@ -1,4 +1,4 @@
-import {addPost, updateNewPostText} from '../redux/profile-reducer';
+import {addPost, setUserProfile, updateNewPostText} from '../redux/profile-reducer';
 import {sendMessage, updateNewMessageBody} from '../redux/dialogs-reducer';
 import {
   follow,
@@ -20,3 +20,4 @@ export type ActionsTypes =
   | ReturnType<typeof setCurrentPage>
   | ReturnType<typeof setTotalUsersCount>
   | ReturnType<typeof toggleIsFetching>
+  | ReturnType<typeof setUserProfile>

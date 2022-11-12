@@ -1,7 +1,13 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
+import {Preloader} from '../../../common/Preloader/Preloader';
+import {ProfilePropsType} from '../../Profile';
 
-const ProfileInfo = () => {
+const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
+  if(!props.profile) {
+    return <Preloader/>
+  }
+
   return (
     <div>
       <div className={styles.main}>
@@ -9,7 +15,7 @@ const ProfileInfo = () => {
           src={'https://img.freepik.com/free-vector/night-ocean-landscape-full-moon-and-stars-shine_107791-7397.jpg?w=2000'}
           alt={'cover'}/>
         <div className={styles.descriptionBlock}>
-          <img src={'https://thumbs.dreamstime.com/b/frenchbulldog-198912643.jpg'} alt={'user avatar'}/> + description
+          <img src={props.profile.photos.large} alt={'user avatar'}/> + description
         </div>
       </div>
     </div>

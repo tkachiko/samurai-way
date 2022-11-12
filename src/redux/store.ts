@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {addPost, profileReducer, updateNewPostText} from './profile-reducer';
+import {addPost, profileReducer, ProfileType, updateNewPostText} from './profile-reducer';
 import {dialogsReducer, sendMessage, updateNewMessageBody} from './dialogs-reducer';
 
 type DialogsDataType = {
@@ -18,6 +18,7 @@ type MessagesDataType = {
 type ProfilePageType = {
   posts: PostsDataType[]
   newPostText: string
+  profile: ProfileType
 }
 type DialogsPageType = {
   dialogs: DialogsDataType[]
@@ -49,6 +50,7 @@ const store: StoreType = {
         {id: v1(), message: 'Hi, how are you?', likesCount: 5},
       ],
       newPostText: 'it-kamasutra.com',
+      profile: {} as ProfileType
     },
     dialogsPage: {
       dialogs: [
