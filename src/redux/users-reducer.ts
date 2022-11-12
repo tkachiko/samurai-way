@@ -2,7 +2,11 @@ import {ActionsTypes} from '../types/types';
 
 export const FOLLOW = 'samurai-way/users/FOLLOW';
 export const UNFOLLOW = 'samurai-way/users/UNFOLLOW';
-export const SET_USERS = 'samurai-way/users/SET-USERS';
+export const SET_USERS = 'samurai-way/users/SET_USERS';
+export const SET_CURRENT_PAGE = 'samurai-way/users/SET_CURRENT_PAGE';
+export const SET_TOTAL_USERS_COUNT = 'samurai-way/users/SET_TOTAL_USERS_COUNT';
+
+type InitialStateType = typeof initialState
 
 type UsersLocationType = {
   city: string
@@ -18,26 +22,11 @@ export type UserType = {
   location: UsersLocationType
 }
 
-export type InitialStateType = typeof initialState
-
 const initialState = {
-  users: [
-    // {
-    //   id: v1(), photoURL: 'https://i.pinimg.com/originals/5a/6b/18/5a6b18e5bc84c9c407189abf424bcc13.jpg', followed: false, fullName: 'Dmitry', status: 'I am a boss!', location: {
-    //     city: 'Minsk', country: 'Belarus'
-    //   }
-    // },
-    // {
-    //   id: v1(), photoURL: 'https://i.pinimg.com/originals/5a/6b/18/5a6b18e5bc84c9c407189abf424bcc13.jpg', followed: true, fullName: 'Sergey', status: 'I am looking for a job', location: {
-    //     city: 'Moscow', country: 'Russia'
-    //   }
-    // },
-    // {
-    //   id: v1(), photoURL: 'https://i.pinimg.com/originals/5a/6b/18/5a6b18e5bc84c9c407189abf424bcc13.jpg', followed: false, fullName: 'Andrew', status: 'I can fly!', location: {
-    //     city: 'New York', country: 'USA'
-    //   }
-    // },
-  ] as Array<UserType>,
+  users: [] as Array<UserType>,
+  pageSize: 5,
+  totalUsersCount: 55,
+  currentPage: 1,
 };
 
 export const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -54,7 +43,15 @@ export const usersReducer = (state = initialState, action: ActionsTypes): Initia
       };
       case SET_USERS:
       return {
-        ...state, users: [...state.users, ...action.users]
+        ...state, users: action.users
+      };
+      case SET_CURRENT_PAGE:
+      return {
+        ...state, currentPage: action.pageNumber
+      };
+      case SET_TOTAL_USERS_COUNT:
+      return {
+        ...state, totalUsersCount: action.totalCount
       };
     default:
       return state;
@@ -64,3 +61,5 @@ export const usersReducer = (state = initialState, action: ActionsTypes): Initia
 export const followAC = (userId: number) => ({type: FOLLOW, userId} as const);
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const);
 export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const);
+export const setCurrentPageAC = (pageNumber: number) => ({type: SET_CURRENT_PAGE, pageNumber} as const);
+export const setTotalUsersCountAC = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const);

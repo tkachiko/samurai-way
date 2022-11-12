@@ -5,7 +5,7 @@ import axios from 'axios';
 import userPhoto from '../../assets/images/user-image.png';
 
 const Users = (props: UsersPropsType) => {
-  if (props.usersPage.users.length === 0) {
+  if (props.users.length === 0) {
     axios.get('https://social-network.samuraijs.com/api/1.0/users')
       .then((response: any) => {
         props.setUsers(response.data.items);
@@ -13,7 +13,7 @@ const Users = (props: UsersPropsType) => {
   }
   return (
     <div>
-      {props.usersPage.users.map(u => <div key={u.id}>
+      {props.users.map(u => <div key={u.id}>
         <span>
           <div>
             <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={styles.userPhoto}
@@ -40,4 +40,4 @@ const Users = (props: UsersPropsType) => {
   );
 };
 
-export default Users;
+// export default Users;
