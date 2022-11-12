@@ -1,6 +1,13 @@
 import {addPostAC, updateNewPostTextAC} from '../redux/profile-reducer';
 import {sendMessageAC, updateNewMessageBodyAC} from '../redux/dialogs-reducer';
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from '../redux/users-reducer';
+import {
+  followAC,
+  setCurrentPageAC,
+  setTotalUsersCountAC,
+  setUsersAC,
+  toggleIsFetchingAC,
+  unfollowAC
+} from '../redux/users-reducer';
 
 export type ActionsTypes =
   ReturnType<typeof addPostAC>
@@ -12,3 +19,4 @@ export type ActionsTypes =
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof setCurrentPageAC>
   | ReturnType<typeof setTotalUsersCountAC>
+  | ReturnType<typeof toggleIsFetchingAC>
