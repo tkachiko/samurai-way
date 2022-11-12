@@ -43,19 +43,19 @@ export const usersReducer = (state = initialState, action: ActionsTypes): Initia
         ...state,
         users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)
       };
-      case SET_USERS:
+    case SET_USERS:
       return {
         ...state, users: action.users
       };
-      case SET_CURRENT_PAGE:
+    case SET_CURRENT_PAGE:
       return {
         ...state, currentPage: action.pageNumber
       };
-      case SET_TOTAL_USERS_COUNT:
+    case SET_TOTAL_USERS_COUNT:
       return {
         ...state, totalUsersCount: action.totalCount
       };
-      case TOGGLE_IS_FETCHING:
+    case TOGGLE_IS_FETCHING:
       return {
         ...state, isFetching: action.isFetching
       };
@@ -64,9 +64,10 @@ export const usersReducer = (state = initialState, action: ActionsTypes): Initia
   }
 };
 
-export const followAC = (userId: number) => ({type: FOLLOW, userId} as const);
-export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const);
-export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const);
-export const setCurrentPageAC = (pageNumber: number) => ({type: SET_CURRENT_PAGE, pageNumber} as const);
-export const setTotalUsersCountAC = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const);
-export const toggleIsFetchingAC = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const);
+// action creators
+export const follow = (userId: number) => ({type: FOLLOW, userId} as const);
+export const unfollow = (userId: number) => ({type: UNFOLLOW, userId} as const);
+export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users} as const);
+export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, pageNumber} as const);
+export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const);
+export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const);

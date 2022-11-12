@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
-import {addPostAC, profileReducer, updateNewPostTextAC} from './profile-reducer';
-import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from './dialogs-reducer';
+import {addPost, profileReducer, updateNewPostText} from './profile-reducer';
+import {dialogsReducer, sendMessage, updateNewMessageBody} from './dialogs-reducer';
 
 type DialogsDataType = {
   id: string
@@ -36,10 +36,10 @@ type StoreType = {
   dispatch: (action: ActionsTypes) => void
 }
 type ActionsTypes =
-  ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof sendMessageAC>
-  | ReturnType<typeof updateNewMessageBodyAC>
+  ReturnType<typeof addPost>
+  | ReturnType<typeof updateNewPostText>
+  | ReturnType<typeof sendMessage>
+  | ReturnType<typeof updateNewMessageBody>
 
 const store: StoreType = {
   _state: {
