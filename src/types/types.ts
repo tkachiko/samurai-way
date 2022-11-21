@@ -8,6 +8,7 @@ import {
   toggleIsFetching,
   unfollow
 } from '../redux/users-reducer';
+import {setAuthUserDataAC} from '../redux/auth-reducer';
 
 export type ActionsTypes =
   ReturnType<typeof addPost>
@@ -21,3 +22,4 @@ export type ActionsTypes =
   | ReturnType<typeof setTotalUsersCount>
   | ReturnType<typeof toggleIsFetching>
   | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof setAuthUserDataAC>
