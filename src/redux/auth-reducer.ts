@@ -34,8 +34,7 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
 };
 
 // action creators
-export type setAuthUserDataACType = ReturnType<typeof setAuthUserDataAC>
-export const setAuthUserDataAC = (email: string, userId: number, login: string) => ({
+export const setAuthUserData = (email: string, userId: number, login: string) => ({
   type: SET_USER_DATA,
   data: {
     userId,

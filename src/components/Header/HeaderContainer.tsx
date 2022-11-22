@@ -2,7 +2,7 @@ import React from 'react';
 import {Header} from './Header';
 import {default as axios} from 'axios';
 import {connect} from 'react-redux';
-import {setAuthUserDataAC} from '../../redux/auth-reducer';
+import {setAuthUserData} from '../../redux/auth-reducer';
 import {RootStateType} from '../../redux/redux-store';
 
 type MapStatePropsType = {
@@ -24,7 +24,7 @@ class HeaderContainer extends React.Component<OwnPropsType> {
       })
       .then((response: any) => {
         if (response.data.resultCode === 0) {
-          const {email, id, login} = response.data.data
+          const {email, id, login} = response.data.data;
           this.props.setAuthUserDataAC(email, id, login);
         }
       });
@@ -41,4 +41,4 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
   isAuth: state.auth.isAuth,
   login: state.auth.login,
 });
-export default connect(mapStateToProps, {setAuthUserDataAC})(HeaderContainer);
+export default connect(mapStateToProps, {setAuthUserDataAC: setAuthUserData})(HeaderContainer);

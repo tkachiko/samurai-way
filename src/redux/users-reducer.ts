@@ -6,6 +6,7 @@ export const SET_USERS = 'samurai-way/users/SET_USERS';
 export const SET_CURRENT_PAGE = 'samurai-way/users/SET_CURRENT_PAGE';
 export const SET_TOTAL_USERS_COUNT = 'samurai-way/users/SET_TOTAL_USERS_COUNT';
 export const TOGGLE_IS_FETCHING = 'samurai-way/users/TOGGLE_IS_FETCHING';
+export const TOGGLE_IS_FOLLOWING_PROGRESS = 'samurai-way/users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 type InitialStateType = typeof initialState
 
@@ -29,6 +30,7 @@ const initialState = {
   totalUsersCount: 55,
   currentPage: 1,
   isFetching: false,
+  followingInProgress: [2, 3],
 };
 
 export const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -59,6 +61,13 @@ export const usersReducer = (state = initialState, action: ActionsTypes): Initia
       return {
         ...state, isFetching: action.isFetching
       };
+    case TOGGLE_IS_FOLLOWING_PROGRESS:
+      return {
+        ...state,
+        followingInProgress: action.followingInProgress
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter(id => id !== action.userId)
+      };
     default:
       return state;
   }
@@ -71,3 +80,8 @@ export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users} as
 export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, pageNumber} as const);
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const);
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const);
+export const toggleFollowingProgress = (followingInProgress: boolean, userId: number) => ({
+  type: TOGGLE_IS_FOLLOWING_PROGRESS,
+  followingInProgress,
+  userId
+} as const);
