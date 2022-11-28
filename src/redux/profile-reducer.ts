@@ -1,5 +1,7 @@
 import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
+import {Dispatch} from 'redux';
+import {usersAPI} from '../API/API';
 
 export const ADD_POST = 'samurai-way/profile/ADD_POST';
 export const UPDATE_NEW_POST_TEXT = 'samurai-way/profile/UPDATE_NEW_POST_TEXT';
@@ -96,3 +98,11 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Init
 export const addPost = (text: string) => ({type: ADD_POST, text} as const);
 export const updateNewPostText = (text: string) => ({type: UPDATE_NEW_POST_TEXT, text} as const);
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const);
+
+// thunk creators
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+  usersAPI.getProfile(userId)
+    .then(response => {
+      dispatch(setUserProfile(response.data));
+    });
+};

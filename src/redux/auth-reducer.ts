@@ -1,4 +1,6 @@
 import {ActionsTypes} from '../types/types';
+import {authAPI} from '../API/API';
+import {Dispatch} from 'redux';
 
 export const SET_USER_DATA = 'samurai-way/users/SET_USER_DATA';
 
@@ -42,3 +44,14 @@ export const setAuthUserData = (email: string, userId: number, login: string) =>
     login,
   }
 } as const);
+
+// thunk creators
+export const getAuthUserData = () => (dispatch: Dispatch) => {
+  authAPI.me()
+    .then((response: any) => {
+      if (response.data.resultCode === 0) {
+        const {email, id, login} = response.data.data;
+        dispatch(setAuthUserData(email, id, login));
+      }
+    });
+};

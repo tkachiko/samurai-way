@@ -1,13 +1,6 @@
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
-import {
-  followSuccess,
-  getUsers,
-  setCurrentPage,
-  toggleFollowingProgress,
-  unfollowSuccess,
-  UserType
-} from '../../redux/users-reducer';
+import {follow, getUsers, setCurrentPage, toggleFollowingProgress, unfollow, UserType} from '../../redux/users-reducer';
 import React from 'react';
 import Users from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
@@ -69,8 +62,8 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 };
 
 export default connect(mapStateToProps, {
-  follow: followSuccess,
-  unfollow: unfollowSuccess,
+  follow,
+  unfollow,
   setCurrentPage,
   toggleFollowingProgress,
   getUsers,
