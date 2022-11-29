@@ -19,7 +19,7 @@ const initialState = {
   email: null as null | string,
   login: null as null | string,
   isFetching: false,
-  isAuth: true
+  isAuth: false
 };
 
 export const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
