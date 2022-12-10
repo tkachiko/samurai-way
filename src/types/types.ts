@@ -1,4 +1,4 @@
-import {addPost, setUserProfile, updateNewPostText} from '../redux/profile-reducer';
+import {addPost, setStatus, setUserProfile, updateNewPostText} from '../redux/profile-reducer';
 import {sendMessage, updateNewMessageBody} from '../redux/dialogs-reducer';
 import {
   followSuccess,
@@ -25,3 +25,4 @@ export type ActionsTypes =
   | ReturnType<typeof setUserProfile>
   | ReturnType<typeof setAuthUserData>
   | ReturnType<typeof toggleFollowingProgress>
+  | ReturnType<typeof setStatus>

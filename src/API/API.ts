@@ -18,21 +18,36 @@ export const usersAPI = {
   },
   follow(userId: number) {
     return instance
-      .post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`);
+      .post(`follow/${userId}`);
   },
   unfollow(userId: number) {
     return instance
-      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`);
+      .delete(`follow/${userId}`);
   },
   getProfile(userId: string) {
-    return instance
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`);
+    console.warn('Obsolete method. Please use profileAPI object');
+    return profileAPI.getProfile(userId);
   }
 };
 
 export const authAPI = {
   me() {
     return instance
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`);
+      .get(`auth/me`);
+  }
+};
+
+export const profileAPI = {
+  getProfile(userId: string) {
+    return instance
+      .get(`profile/${userId}`);
+  },
+  getStatus(userId: string) {
+    return instance
+      .get(`profile/status/${userId}`);
+  },
+  updateStatus(status: string) {
+    return instance
+      .put(`profile/status`, {status});
   }
 };

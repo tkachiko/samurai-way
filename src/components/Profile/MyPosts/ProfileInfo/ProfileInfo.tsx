@@ -17,7 +17,7 @@ const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
           alt={'cover'}/>
         <div className={styles.descriptionBlock}>
           <img src={props.profile.photos.large} alt={'user avatar'}/>
-          <ProfileStatus status={'Hey yo!'}/>
+          <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
       </div>
     </div>
