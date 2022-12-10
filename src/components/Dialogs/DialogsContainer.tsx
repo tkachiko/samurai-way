@@ -2,10 +2,10 @@ import {DialogsPageType, sendMessage, updateNewMessageBody} from '../../redux/di
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
+import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 type MapStateToPropsType = {
   dialogsPage: DialogsPageType
-  isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
@@ -18,10 +18,9 @@ export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
   return {
     dialogsPage: state.dialogsPage,
-    isAuth: state.auth.isAuth,
   };
 };
 
-const DialogsContainer = connect(mapStateToProps, {updateNewMessageBody, sendMessage})(Dialogs);
+const DialogsContainer = connect(mapStateToProps, {updateNewMessageBody, sendMessage})(WithAuthRedirect(Dialogs));
 
 export default DialogsContainer;
