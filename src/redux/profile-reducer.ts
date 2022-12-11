@@ -4,7 +4,6 @@ import {Dispatch} from 'redux';
 import {profileAPI} from '../API/API';
 
 export const ADD_POST = 'samurai-way/profile/ADD_POST';
-export const UPDATE_NEW_POST_TEXT = 'samurai-way/profile/UPDATE_NEW_POST_TEXT';
 export const SET_USER_PROFILE = 'samurai-way/profile/SET_USER_PROFILE';
 export const SET_STATUS = 'samurai-way/profile/SET_STATUS';
 
@@ -33,7 +32,6 @@ export type ProfileType = {
 }
 export type ProfilePageType = {
   posts: PostsDataType[]
-  newPostText: string
   profile: ProfileType
   status: string
 }
@@ -45,7 +43,6 @@ const initialState = {
     {id: v1(), message: 'It\'s my first post', likesCount: 17},
     {id: v1(), message: 'Hi, how are you?', likesCount: 5},
   ] as Array<PostsDataType>,
-  newPostText: 'it-kamasutra.com' as string,
   profile: {
     userId: 1,
     lookingForAJob: false,
@@ -67,24 +64,16 @@ const initialState = {
 };
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
-  // debugger
   switch (action.type) {
     case ADD_POST: {
       const newPost: PostsDataType = {
         id: v1(),
-        message: state.newPostText,
+        message: action.text,
         likesCount: 0
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: ''
-      };
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      return {
-        ...state,
-        newPostText: action.text
       };
     }
     case SET_USER_PROFILE: {
@@ -106,7 +95,6 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 
 // action creators
 export const addPost = (text: string) => ({type: ADD_POST, text} as const);
-export const updateNewPostText = (text: string) => ({type: UPDATE_NEW_POST_TEXT, text} as const);
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const);
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const);
 

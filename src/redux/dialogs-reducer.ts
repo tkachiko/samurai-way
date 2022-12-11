@@ -2,7 +2,6 @@ import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
 
 export const SEND_MESSAGE = 'samurai-way/dialogs/SEND-MESSAGE';
-export const UPDATE_NEW_MESSAGE_BODY = 'samurai-way/dialogs/UPDATE-NEW-MESSAGE-BODY';
 
 type InitialStateType = typeof initialState;
 
@@ -17,7 +16,6 @@ export type MessagesDataType = {
 export type DialogsPageType = {
   dialogs: DialogsDataType[]
   messages: MessagesDataType[]
-  newMessageBody: string
 }
 
 const initialState = {
@@ -33,7 +31,6 @@ const initialState = {
     {id: v1(), message: 'How are you?'},
     {id: v1(), message: 'Let\'s go!'},
   ] as Array<MessagesDataType>,
-  newMessageBody: '' as string,
 };
 
 export const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -41,17 +38,11 @@ export const dialogsReducer = (state = initialState, action: ActionsTypes): Init
     case SEND_MESSAGE:
       const newMessage: MessagesDataType = {
         id: v1(),
-        message: state.newMessageBody,
+        message: action.text,
       };
       return {
         ...state,
-        newMessageBody: '',
         messages: [...state.messages, newMessage]
-      };
-    case UPDATE_NEW_MESSAGE_BODY:
-      return {
-        ...state,
-        newMessageBody: action.text
       };
     default:
       return state;
@@ -60,4 +51,3 @@ export const dialogsReducer = (state = initialState, action: ActionsTypes): Init
 
 // action creators
 export const sendMessage = (text: string) => ({type: SEND_MESSAGE, text} as const);
-export const updateNewMessageBody = (text: string) => ({type: UPDATE_NEW_MESSAGE_BODY, text: text} as const);

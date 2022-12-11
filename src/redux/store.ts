@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
-import {addPost, profileReducer, ProfileType, updateNewPostText} from './profile-reducer';
-import {dialogsReducer, sendMessage, updateNewMessageBody} from './dialogs-reducer';
+import {addPost, profileReducer, ProfileType} from './profile-reducer';
+import {dialogsReducer, sendMessage} from './dialogs-reducer';
 
 type DialogsDataType = {
   id: string
@@ -17,14 +17,12 @@ type MessagesDataType = {
 }
 type ProfilePageType = {
   posts: PostsDataType[]
-  newPostText: string
   profile: ProfileType
   status: string
 }
 type DialogsPageType = {
   dialogs: DialogsDataType[]
   messages: MessagesDataType[]
-  newMessageBody: string
 }
 type StateType = {
   profilePage: ProfilePageType
@@ -39,9 +37,7 @@ type StoreType = {
 }
 type ActionsTypes =
   ReturnType<typeof addPost>
-  | ReturnType<typeof updateNewPostText>
   | ReturnType<typeof sendMessage>
-  | ReturnType<typeof updateNewMessageBody>
 
 const store: StoreType = {
   _state: {
@@ -50,7 +46,6 @@ const store: StoreType = {
         {id: v1(), message: 'It\'s my first post', likesCount: 17},
         {id: v1(), message: 'Hi, how are you?', likesCount: 5},
       ],
-      newPostText: 'it-kamasutra.com',
       profile: {} as ProfileType,
       status: ''
     },
@@ -67,7 +62,6 @@ const store: StoreType = {
         {id: v1(), message: 'How are you?'},
         {id: v1(), message: 'Let\'s go!'},
       ],
-      newMessageBody: '',
     }
   },
   _callSubscriber() {

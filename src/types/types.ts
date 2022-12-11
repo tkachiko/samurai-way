@@ -1,5 +1,5 @@
-import {addPost, setStatus, setUserProfile, updateNewPostText} from '../redux/profile-reducer';
-import {sendMessage, updateNewMessageBody} from '../redux/dialogs-reducer';
+import {addPost, setStatus, setUserProfile} from '../redux/profile-reducer';
+import {sendMessage} from '../redux/dialogs-reducer';
 import {
   followSuccess,
   setCurrentPage,
@@ -13,9 +13,7 @@ import {setAuthUserData} from '../redux/auth-reducer';
 
 export type ActionsTypes =
   ReturnType<typeof addPost>
-  | ReturnType<typeof updateNewPostText>
   | ReturnType<typeof sendMessage>
-  | ReturnType<typeof updateNewMessageBody>
   | ReturnType<typeof followSuccess>
   | ReturnType<typeof unfollowSuccess>
   | ReturnType<typeof setUsers>
