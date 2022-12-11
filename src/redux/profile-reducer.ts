@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
 import {Dispatch} from 'redux';
-import {profileAPI, usersAPI} from '../API/API';
+import {profileAPI} from '../API/API';
 
 export const ADD_POST = 'samurai-way/profile/ADD_POST';
 export const UPDATE_NEW_POST_TEXT = 'samurai-way/profile/UPDATE_NEW_POST_TEXT';
@@ -112,7 +112,7 @@ export const setStatus = (status: string) => ({type: SET_STATUS, status} as cons
 
 // thunk creators
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-  usersAPI.getProfile(userId)
+  profileAPI.getProfile(userId)
     .then(response => {
       dispatch(setUserProfile(response.data));
     });
@@ -129,7 +129,7 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
   profileAPI.updateStatus(status)
     .then(response => {
       if (response.data.resultCode === 0) {
-        dispatch(setStatus(response.data));
+        dispatch(setStatus(status));
       }
     });
 };
