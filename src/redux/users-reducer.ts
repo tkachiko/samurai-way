@@ -1,5 +1,5 @@
 import {ActionsTypes} from '../types/types';
-import {usersAPI} from '../API/API';
+import {usersAPI} from '../api/api';
 import {Dispatch} from 'redux';
 
 export const FOLLOW = 'samurai-way/users/FOLLOW';

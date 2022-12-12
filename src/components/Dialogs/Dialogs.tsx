@@ -3,8 +3,7 @@ import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {DialogsPropsType} from './DialogsContainer';
-import {reduxForm} from 'redux-form';
-import {AddMessageForm, AddMessageFormDataType} from './AddMessageForm';
+import {AddMessageFormDataType, AddMessageFormRedux} from './AddMessageForm';
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
   const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
@@ -22,7 +21,5 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     </div>
   );
 };
-
-const AddMessageFormRedux = reduxForm<AddMessageFormDataType>({form: 'dialogAddMessageForm'})(AddMessageForm);
 
 export default Dialogs;

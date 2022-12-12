@@ -2,8 +2,7 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import {MyPostsPropsType} from './MyPostsContainer';
-import {AddNewPostForm, AddNewPostFormDataType} from './AddNewPostForm';
-import {reduxForm} from 'redux-form';
+import {AddNewPostFormDataType, AddPostForm} from './AddNewPostForm';
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   const postsElements = props.profilePage.posts.map(p => <Post id={p.id} message={p.message} like={p.likesCount}
@@ -20,7 +19,5 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     </div>
   );
 };
-
-const AddPostForm = reduxForm<AddNewPostFormDataType>({form: 'profileAddNewPostForm'})(AddNewPostForm);
 
 export default MyPosts;

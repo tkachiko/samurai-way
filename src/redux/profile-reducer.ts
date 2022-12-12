@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
 import {ActionsTypes} from '../types/types';
 import {Dispatch} from 'redux';
-import {profileAPI} from '../API/API';
+import {profileAPI} from '../api/api';
 
 export const ADD_POST = 'samurai-way/profile/ADD_POST';
 export const SET_USER_PROFILE = 'samurai-way/profile/SET_USER_PROFILE';

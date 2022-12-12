@@ -1,5 +1,5 @@
 import {ActionsTypes} from '../types/types';
-import {authAPI} from '../API/API';
+import {authAPI} from '../api/api';
 import {Dispatch} from 'redux';
 
 export const SET_USER_DATA = 'samurai-way/users/SET_USER_DATA';
