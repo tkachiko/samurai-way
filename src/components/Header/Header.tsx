@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 type PropsType = {
   login: string | null,
   isAuth: boolean
+  logout: () => void
 }
 
 export const Header: React.FC<PropsType> = (props) => {
@@ -15,7 +16,7 @@ export const Header: React.FC<PropsType> = (props) => {
         alt={'logo'}/>
       <div className={styles.loginBlock}>
         {props.isAuth
-          ? props.login
+          ? <div>{props.login} - <button onClick={props.logout}>logout</button></div>
           : <NavLink to={'/login'}>Login</NavLink>}
       </div>
     </div>
