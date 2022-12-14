@@ -1,6 +1,7 @@
 import {ActionsTypes} from '../types/types';
 import {authAPI} from '../api/api';
 import {Dispatch} from 'redux';
+import {stopSubmit} from 'redux-form';
 
 export const SET_USER_DATA = 'samurai-way/users/SET_USER_DATA';
 
@@ -61,6 +62,9 @@ export const login = (email: string, password: string, rememberMe: boolean) => (
     .then((response: any) => {
       if (response.data.resultCode === 0) {
         dispatch(getAuthUserData());
+      } else {
+        const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+        dispatch(stopSubmit('login', {_error: message}));
       }
     });
 };
