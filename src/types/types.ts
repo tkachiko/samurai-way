@@ -1,5 +1,5 @@
-import {addPost, setStatus, setUserProfile} from '../redux/profile-reducer';
-import {sendMessage} from '../redux/dialogs-reducer';
+import {addPost, setStatus, setUserProfile} from '../redux/profile-reducer'
+import {sendMessage} from '../redux/dialogs-reducer'
 import {
   followSuccess,
   setCurrentPage,
@@ -7,9 +7,10 @@ import {
   setUsers,
   toggleFollowingProgress,
   toggleIsFetching,
-  unfollowSuccess
-} from '../redux/users-reducer';
-import {setAuthUserData} from '../redux/auth-reducer';
+  unfollowSuccess,
+} from '../redux/users-reducer'
+import {setAuthUserData} from '../redux/auth-reducer'
+import {initializedSuccess} from '../redux/app-reducer'
 
 export type ActionsTypes =
   ReturnType<typeof addPost>
@@ -24,3 +25,4 @@ export type ActionsTypes =
   | ReturnType<typeof setAuthUserData>
   | ReturnType<typeof toggleFollowingProgress>
   | ReturnType<typeof setStatus>
+  | ReturnType<typeof initializedSuccess>
