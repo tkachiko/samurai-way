@@ -7,7 +7,7 @@ export const INITIALIZED_SUCCESS = 'samurai-way/app/INITIALIZED_SUCCESS'
 export type InitialStateType = typeof initialState
 
 const initialState = {
-  initialized: false as boolean,
+  initialized: false,
 }
 
 export const appReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -27,8 +27,8 @@ export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS} as const)
 
 // thunk creators
 export const initializeApp = (): AppThunk => (dispatch: any) => {
-  let promise = dispatch(getAuthUserData())
-  Promise.all([promise]).then(() => {
-    dispatch(initializedSuccess())
-  })
+  dispatch(getAuthUserData())
+    .then(() => {
+      dispatch(initializedSuccess())
+    })
 }
