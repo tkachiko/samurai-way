@@ -1,5 +1,5 @@
-import React from 'react';
-import {FormControl} from './FormControl';
+import React from 'react'
+import {FormControl} from './FormControl'
 
 type TextAreaType = {
   input: any
@@ -7,9 +7,5 @@ type TextAreaType = {
 }
 
 export const TextArea: React.FC<TextAreaType> = ({input, meta, children, ...props}) => {
-  return <FormControl {...props} input={input} meta={meta}><textarea{...input} {...props}/></FormControl>;
-};
-
-export const Input: React.FC<TextAreaType> = ({input, meta, children, ...props}) => {
-  return <FormControl {...props} input={input} meta={meta}><input{...input} {...props}/></FormControl>;
-};
+  return <FormControl {...props} input={input} meta={meta}><textarea{...input} {...props} /></FormControl>
+}

@@ -1,18 +1,11 @@
-import React from 'react';
-import styles from './FormControls.module.css';
+import React from 'react'
+import {FormControl} from './FormControl'
 
-type TextAreaType = {
+type InputType = {
   input: any
   meta: any
 }
 
-export const Input: React.FC<TextAreaType> = ({input, meta, ...props}) => {
-  const hasError = meta.touched && meta.error;
-
-  return (
-    <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
-      <input {...input} {...props}></input>
-      {hasError && <span>{meta.error}</span>}
-    </div>
-  );
-};
+export const Input: React.FC<InputType> = ({input, meta, children, ...props}) => {
+  return <FormControl {...props} input={input} meta={meta}><input{...input} {...props} /></FormControl>
+}

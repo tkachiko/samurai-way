@@ -2,7 +2,7 @@ import {ActionsTypes} from '../types/types'
 import {getAuthUserData} from './auth-reducer'
 import {AppThunk} from './redux-store'
 
-export const INITIALIZED_SUCCESS = 'samurai-way/app/INITIALIZED_SUCCESS'
+export const INITIALIZED_SUCCESS = 'social-network/app/INITIALIZED_SUCCESS'
 
 export type InitialStateType = typeof initialState
 

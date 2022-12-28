@@ -1,5 +1,5 @@
 import React, {ComponentType} from 'react'
-import Profile from './Profile'
+import {Profile} from './Profile'
 import {connect} from 'react-redux'
 import {getStatus, getUserProfile, ProfileType, updateStatus} from '../../redux/profile-reducer'
 import {RootStateType} from '../../redux/redux-store'

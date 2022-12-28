@@ -3,9 +3,9 @@ import {ActionsTypes} from '../types/types'
 import {Dispatch} from 'redux'
 import {profileAPI} from '../api/api'
 
-export const ADD_POST = 'samurai-way/profile/ADD_POST'
-export const SET_USER_PROFILE = 'samurai-way/profile/SET_USER_PROFILE'
-export const SET_STATUS = 'samurai-way/profile/SET_STATUS'
+export const ADD_POST = 'social-network/profile/ADD_POST'
+export const SET_USER_PROFILE = 'social-network/profile/SET_USER_PROFILE'
+export const SET_STATUS = 'social-network/profile/SET_STATUS'
 
 export type PostsDataType = {
   id: string
@@ -99,25 +99,17 @@ export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 
 // thunk creators
-export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-  profileAPI.getProfile(userId)
-    .then(response => {
-      dispatch(setUserProfile(response.data))
-    })
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
+  const response = await profileAPI.getProfile(userId)
+  dispatch(setUserProfile(response.data))
 }
-
-export const getStatus = (userId: string) => (dispatch: Dispatch) => {
-  profileAPI.getStatus(userId)
-    .then(response => {
-      dispatch(setStatus(response.data))
-    })
+export const getStatus = (userId: string) => async (dispatch: Dispatch) => {
+  const response = await profileAPI.getStatus(userId)
+  dispatch(setStatus(response.data))
 }
-
-export const updateStatus = (status: string) => (dispatch: Dispatch) => {
-  profileAPI.updateStatus(status)
-    .then(response => {
-      if (response.data.resultCode === 0) {
-        dispatch(setStatus(status))
-      }
-    })
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+  const response = await profileAPI.updateStatus(status)
+  if (response.data.resultCode === 0) {
+    dispatch(setStatus(status))
+  }
 }

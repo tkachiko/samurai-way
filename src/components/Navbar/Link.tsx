@@ -1,18 +1,16 @@
-import React from 'react';
-import s from './Navbar.module.css';
-import {NavLink} from 'react-router-dom';
+import React, {FC} from 'react'
+import s from './Navbar.module.css'
+import {NavLink} from 'react-router-dom'
 
 export type LinkPropsType = {
   url: string
   title: string
 }
 
-const Link = (props: LinkPropsType) => {
+export const Link: FC<LinkPropsType> = ({url, title}) => {
   return (
     <li className={s.item}>
-      <NavLink to={props.url} activeClassName={s.activeLink}>{props.title}</NavLink>
+      <NavLink to={url} activeClassName={s.activeLink}>{title}</NavLink>
     </li>
-  );
-};
-
-export default Link;
+  )
+}

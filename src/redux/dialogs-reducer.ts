@@ -1,7 +1,7 @@
 import {v1} from 'uuid'
 import {ActionsTypes} from '../types/types'
 
-export const SEND_MESSAGE = 'samurai-way/dialogs/SEND-MESSAGE'
+export const SEND_MESSAGE = 'social-network/dialogs/SEND-MESSAGE'
 
 export type InitialStateType = typeof initialState;
 

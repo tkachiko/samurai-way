@@ -1,20 +1,15 @@
-import React from 'react';
-import styles from './Navbar.module.css';
-import Link from './Link';
+import React from 'react'
+import styles from './Navbar.module.css'
+import {Link} from './Link'
 
-function Navbar() {
+export const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <ul>
-        <Link url={'/profile'} title={'Profile'}/>
-        <Link url={'/dialogs'} title={'Messages'}/>
-        <Link url={'/users'} title={'Users'}/>
-        <Link url={'/news'} title={'News'}/>
-        <Link url={'/music'} title={'Music'}/>
-        <Link url={'/settings'} title={'Settings'}/>
+        <Link url={'/profile'} title={'Profile'} />
+        <Link url={'/dialogs'} title={'Messages'} />
+        <Link url={'/users'} title={'Users'} />
       </ul>
     </nav>
-  );
+  )
 }
-
-export default Navbar;

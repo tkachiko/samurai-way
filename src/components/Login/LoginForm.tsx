@@ -1,8 +1,8 @@
-import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input} from '../common/FormsControls/Input';
-import {required} from '../../utils/validators/validators';
-import styles from './../common/FormsControls/FormControls.module.css';
+import React from 'react'
+import {Field, InjectedFormProps, reduxForm} from 'redux-form'
+import {Input} from '../common/FormsControls/Input'
+import {required} from '../../utils/validators/validators'
+import styles from './../common/FormsControls/FormControls.module.css'
 
 export type FormDataType = {
   email: string
@@ -10,8 +10,8 @@ export type FormDataType = {
   rememberMe: boolean
 }
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-  return <form onSubmit={props.handleSubmit}>
+export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
+  return <form onSubmit={handleSubmit}>
     <div>
       <Field type="text"
              placeholder={'Email'}
@@ -34,13 +34,13 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
              component={Input}
       />Remember me
     </div>
-    {props.error && <div className={styles.formSummaryError}>
-      {props.error}
+    {error && <div className={styles.formSummaryError}>
+      {error}
     </div>}
     <div>
       <button type={'submit'}>Login</button>
     </div>
-  </form>;
-};
+  </form>
+}
 
-export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm);
+export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
