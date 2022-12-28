@@ -1,9 +1,9 @@
-import {v1} from 'uuid';
-import {ActionsTypes} from '../types/types';
+import {v1} from 'uuid'
+import {ActionsTypes} from '../types/types'
 
-export const SEND_MESSAGE = 'samurai-way/dialogs/SEND-MESSAGE';
+export const SEND_MESSAGE = 'samurai-way/dialogs/SEND-MESSAGE'
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 export type DialogsDataType = {
   id: string
@@ -31,7 +31,7 @@ const initialState = {
     {id: v1(), message: 'How are you?'},
     {id: v1(), message: 'Let\'s go!'},
   ] as Array<MessagesDataType>,
-};
+}
 
 export const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
@@ -39,15 +39,15 @@ export const dialogsReducer = (state = initialState, action: ActionsTypes): Init
       const newMessage: MessagesDataType = {
         id: v1(),
         message: action.text,
-      };
+      }
       return {
         ...state,
-        messages: [...state.messages, newMessage]
-      };
+        messages: [...state.messages, newMessage],
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
 // action creators
-export const sendMessage = (text: string) => ({type: SEND_MESSAGE, text} as const);
+export const sendMessage = (text: string) => ({type: SEND_MESSAGE, text} as const)

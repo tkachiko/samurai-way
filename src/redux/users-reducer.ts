@@ -10,7 +10,7 @@ export const SET_TOTAL_USERS_COUNT = 'samurai-way/users/SET_TOTAL_USERS_COUNT'
 export const TOGGLE_IS_FETCHING = 'samurai-way/users/TOGGLE_IS_FETCHING'
 export const TOGGLE_IS_FOLLOWING_PROGRESS = 'samurai-way/users/TOGGLE_IS_FOLLOWING_PROGRESS'
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 type UsersLocationType = {
   city: string
