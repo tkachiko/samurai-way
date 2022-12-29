@@ -1,9 +1,9 @@
-# React network SPA @it-incubator
+# Hello, friends!
 
-В этом проекте установлены следующие библиотеки:
+The following libraries were installed and used in this project:
 
-- **antd** 
-- **axios** 
+- **antd**
+- **axios**
 - **classnames**
 - **formik**
 - **gh-pages**
@@ -12,21 +12,22 @@
 - **react-dom** and **@types/react-dom**
 - **react-redux** and **@types/react-redux**
 - **react-router-dom** and **@types/react-router-dom**
-- **react-scripts** 
+- **react-scripts**
 - **react-test-renderer** and **@types/react-test-renderer**
 - **redux**
 - **redux-form** and **@types/redux-form**
 - **redux-thunk**
 - **reselect**
-- **typescript** 
+- **typescript**
 - **uuid** and **@types/uuid**
 
-После git clone 'link' установите все зависимости из package.json:
+After git clone 'link' install all the dependencies from package.json:
+
 ### `yarn`
 
-а потом запустите проект:
-### `yarn start`
+and then start the project:
 
+### `yarn start`
 
 <hr>
 To learn React, check out the [React documentation](https://reactjs.org/).
