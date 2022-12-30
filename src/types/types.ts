@@ -9,7 +9,7 @@ import {
   toggleIsFetching,
   unfollowSuccess,
 } from '../redux/users-reducer'
-import {setAuthUserData} from '../redux/auth-reducer'
+import {setAuthUserData, stopSubmit} from '../redux/auth-reducer'
 import {initializedSuccess} from '../redux/app-reducer'
 
 export type ActionsTypes =
@@ -26,3 +26,4 @@ export type ActionsTypes =
   | ReturnType<typeof toggleFollowingProgress>
   | ReturnType<typeof setStatus>
   | ReturnType<typeof initializedSuccess>
+  | ReturnType<typeof stopSubmit>

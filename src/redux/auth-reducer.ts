@@ -1,9 +1,9 @@
 import {ActionsTypes} from '../types/types'
 import {authAPI} from '../api/api'
 import {Dispatch} from 'redux'
-import {stopSubmit} from 'redux-form'
 
 export const SET_USER_DATA = 'social-network/auth/SET_USER_DATA'
+export const STOP_SUBMIT = 'social-network/auth/STOP_SUBMIT'
 
 export type AuthType = {
   id?: number,
@@ -20,6 +20,7 @@ const initialState = {
   email: null as null | string,
   login: null as null | string,
   isFetching: false,
+  error: null as null | string,
   isAuth: false,
 }
 
@@ -30,6 +31,8 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
         ...state,
         ...action.payload,
       }
+    case STOP_SUBMIT:
+      return {...state, error: action.error}
     default:
       return state
   }
@@ -45,6 +48,8 @@ export const setAuthUserData = (email: string | null, userId: number | null, log
     isAuth,
   },
 } as const)
+export const stopSubmit = (error: null | string) =>
+  ({type: STOP_SUBMIT, error} as const)
 
 // thunk creators
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
@@ -58,9 +63,10 @@ export const login = (email: string, password: string, rememberMe: boolean) => a
   const response = await authAPI.login(email, password, rememberMe)
   if (response.data.resultCode === 0) {
     dispatch(getAuthUserData())
+    dispatch(stopSubmit(null))
   } else {
     const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
-    dispatch(stopSubmit('login', {_error: message}))
+    dispatch(stopSubmit(message))
   }
 }
 export const logout = () => async (dispatch: Dispatch) => {

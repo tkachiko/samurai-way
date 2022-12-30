@@ -12,9 +12,6 @@ const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
   return (
     <div>
       <div className={styles.main}>
-        <img
-          src={'https://img.freepik.com/free-vector/night-ocean-landscape-full-moon-and-stars-shine_107791-7397.jpg?w=2000'}
-          alt={'cover'} />
         <div className={styles.descriptionBlock}>
           <img src={props.profile.photos.large} alt={'user avatar'} />
           <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />

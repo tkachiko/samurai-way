@@ -1,46 +1,71 @@
 import React from 'react'
-import {Field, InjectedFormProps, reduxForm} from 'redux-form'
-import {Input} from '../common/FormsControls/Input'
-import {required} from '../../utils/validators/validators'
-import styles from './../common/FormsControls/FormControls.module.css'
+import styles from './LoginForm.module.css'
+import {SubmitHandler, useForm} from 'react-hook-form'
 
+type PropsType = {
+  onSubmit: (data: FormDataType) => void
+  errorMessage: null | string
+}
 export type FormDataType = {
   email: string
   password: string
   rememberMe: boolean
+  errorMessage: null | string
 }
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
-  return <form onSubmit={handleSubmit}>
+export const LoginForm: React.FC<PropsType> = (props) => {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: {errors},
+  } = useForm<FormDataType>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
+  })
+
+  const onSubmit: SubmitHandler<FormDataType> = (data) => {
+    props.onSubmit(data)
+    props.errorMessage && setError('errorMessage', {type: 'server side', message: 'errorMessage'})
+  }
+
+  return <form onSubmit={handleSubmit(onSubmit)}>
     <div>
-      <Field type="text"
+      <input {...register('email', {
+        required: 'Email is required',
+      })}
+             type={'text'}
              placeholder={'Email'}
-             name={'email'}
-             component={Input}
-             validate={[required]}
       />
+      {errors.email?.message && <span style={{color: 'red'}}>{errors.email.message}</span>}
     </div>
     <div>
-      <Field type="password"
+      <input {...register('password', {
+        required: 'Password is required',
+        minLength: {
+          value: 3,
+          message: 'Password should contain 3 or more characters',
+        },
+      })}
+             type={'password'}
              placeholder={'Password'}
-             name={'password'}
-             component={Input}
-             validate={[required]}
       />
+      {errors.password?.message && <span style={{color: 'red'}}>{errors.password.message}</span>}
     </div>
     <div>
-      <Field type="checkbox"
-             name={'rememberMe'}
-             component={Input}
+      <input type="checkbox"
+             {...register('rememberMe')}
       />Remember me
     </div>
-    {error && <div className={styles.formSummaryError}>
-      {error}
-    </div>}
+    {props.errorMessage &&
+      <div className={styles.formSummaryError}>
+        {props.errorMessage}
+      </div>}
     <div>
       <button type={'submit'}>Login</button>
     </div>
   </form>
 }
-
-export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)

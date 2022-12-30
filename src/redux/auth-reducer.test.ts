@@ -8,6 +8,7 @@ beforeEach(() => {
     email: null as null | string,
     login: null as null | string,
     isFetching: false,
+    error: null as null | string,
     isAuth: false,
   }
 })
