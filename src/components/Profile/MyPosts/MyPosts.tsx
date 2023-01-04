@@ -2,7 +2,7 @@ import React, {FC, memo} from 'react'
 import styles from './MyPosts.module.css'
 import {Post} from './Post/Post'
 import {MyPostsPropsType} from './MyPostsContainer'
-import {AddNewPostFormDataType, AddPostForm} from './AddNewPostForm'
+import {AddPostForm, FormDataType} from './AddPostForm'
 
 export const MyPosts: FC<MyPostsPropsType> = memo(({profilePage, addPost}) => {
   const postsElements = [...profilePage.posts]
@@ -12,8 +12,8 @@ export const MyPosts: FC<MyPostsPropsType> = memo(({profilePage, addPost}) => {
                     key={p.id}
     />)
 
-  const onAddPost = (formData: AddNewPostFormDataType) => {
-    addPost(formData.newPostText)
+  const onAddPost = (data: FormDataType) => {
+    addPost(data.newPostText)
   }
 
   return (
