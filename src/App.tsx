@@ -1,7 +1,7 @@
 import React, {lazy, Suspense} from 'react'
 import './App.css'
 import {Navbar} from './components/Navbar/Navbar'
-import {Route, withRouter} from 'react-router-dom'
+import {Redirect, Route, withRouter} from 'react-router-dom'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Login from './components/Login/Login'
 import {connect} from 'react-redux'
@@ -39,18 +39,18 @@ class App extends React.Component<OwnPropsType> {
         <Navbar />
         <div className="app-wrapper-content">
           <Suspense fallback={<Preloader />}>
+            <Route path={'/'}
+                   render={() => <Redirect to={'/profile'} />} />
             <Route path={'/dialogs'}
-                   render={() => <DialogsContainer />}
-            />
+                   render={() => <DialogsContainer />} />
             <Route path={'/profile/:userId?'}
-                   render={() => <ProfileContainer />}
-            />
+                   render={() => <ProfileContainer />} />
             <Route path={'/users'}
-                   render={() => <UsersContainer />}
-            />
+                   render={() => <UsersContainer />} />
             <Route path={'/login'}
-                   render={() => <Login />}
-            />
+                   render={() => <Login />} />
+            <Route path="*"
+                   render={() => <div>404 NOT FOUND</div>} />
           </Suspense>
         </div>
       </div>
