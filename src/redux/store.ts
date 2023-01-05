@@ -1,6 +1,7 @@
-import {v1} from 'uuid';
-import {addPost, profileReducer, ProfileType} from './profile-reducer';
-import {dialogsReducer, sendMessage} from './dialogs-reducer';
+import {v1} from 'uuid'
+import {addPost, profileReducer} from './profile-reducer'
+import {dialogsReducer, sendMessage} from './dialogs-reducer'
+import {ProfileType} from '../types/types'
 
 type DialogsDataType = {
   id: string
@@ -47,7 +48,7 @@ const store: StoreType = {
         {id: v1(), message: 'Hi, how are you?', likesCount: 5},
       ],
       profile: {} as ProfileType,
-      status: ''
+      status: '',
     },
     dialogsPage: {
       dialogs: [
@@ -62,22 +63,22 @@ const store: StoreType = {
         {id: v1(), message: 'How are you?'},
         {id: v1(), message: 'Let\'s go!'},
       ],
-    }
+    },
   },
   _callSubscriber() {
-    console.log();
+    console.log()
   },
 
   getState() {
-    return this._state;
+    return this._state
   },
   subscribe(observer) {
-    this._callSubscriber = observer;
+    this._callSubscriber = observer
   },
 
   dispatch(action) {
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-    this._callSubscriber();
-  }
-};
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    this._callSubscriber()
+  },
+}

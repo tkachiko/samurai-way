@@ -1,8 +1,8 @@
 import React, {FC} from 'react'
 import styles from './Users.module.css'
 import userPhoto from '../../assets/images/user-image.png'
-import {UserType} from '../../redux/users-reducer'
 import {NavLink} from 'react-router-dom'
+import {UserType} from '../../types/types'
 
 type UsersComponentType = {
   user: UserType

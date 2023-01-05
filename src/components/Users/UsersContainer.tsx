@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../../redux/redux-store'
-import {follow, requestUsers, setCurrentPage, unfollow, UserType} from '../../redux/users-reducer'
+import {follow, requestUsers, setCurrentPage, unfollow} from '../../redux/users-reducer'
 import React from 'react'
 import {Users} from './Users'
 import {Preloader} from '../common/Preloader/Preloader'
@@ -12,6 +12,7 @@ import {
   getTotalUsersCount,
   getUsers,
 } from '../../redux/users-selectors'
+import {UserType} from '../../types/types'
 
 type MapStatePropsType = {
   users: UserType[]

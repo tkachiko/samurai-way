@@ -1,5 +1,6 @@
 import {v1} from 'uuid'
-import {addPost, InitialStateType, PostsDataType, profileReducer, ProfileType, setStatus} from './profile-reducer'
+import {addPost, InitialStateType, profileReducer, setStatus} from './profile-reducer'
+import {PostType, ProfileType} from '../types/types'
 
 let startState: InitialStateType
 
@@ -8,7 +9,7 @@ beforeEach(() => {
     posts: [
       {id: v1(), message: 'It\'s my first post', likesCount: 17},
       {id: v1(), message: 'Hi, how are you?', likesCount: 5},
-    ] as Array<PostsDataType>,
+    ] as Array<PostType>,
     profile: {
       userId: 1,
       lookingForAJob: false,

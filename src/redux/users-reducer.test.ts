@@ -1,4 +1,5 @@
-import {followSuccess, InitialStateType, unfollowSuccess, usersReducer, UserType} from './users-reducer'
+import {followSuccess, InitialStateType, unfollowSuccess, usersReducer} from './users-reducer'
+import {UserType} from '../types/types'
 
 let startState: InitialStateType
 
@@ -10,7 +11,6 @@ beforeEach(() => {
       followed: false,
       name: 'Elena',
       status: '',
-      location: {city: 'string', country: 'string'},
     },
       {
         id: 2,
@@ -18,7 +18,6 @@ beforeEach(() => {
         followed: true,
         name: 'Alex',
         status: '',
-        location: {city: 'string', country: 'string'},
       },
       {
         id: 3,
@@ -26,9 +25,8 @@ beforeEach(() => {
         followed: false,
         name: 'Hanna',
         status: '',
-        location: {city: 'string', country: 'string'},
       },
-    ] as Array<UserType>,
+    ] as UserType[],
     pageSize: 5,
     totalUsersCount: 55,
     currentPage: 1,

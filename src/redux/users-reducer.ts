@@ -1,4 +1,4 @@
-import {ActionsTypes} from '../types/types'
+import {ActionsTypes, UserType} from '../types/types'
 import {usersAPI} from '../api/api'
 import {Dispatch} from 'redux'
 
@@ -11,20 +11,6 @@ export const TOGGLE_IS_FETCHING = 'social-network/users/TOGGLE_IS_FETCHING'
 export const TOGGLE_IS_FOLLOWING_PROGRESS = 'social-network/users/TOGGLE_IS_FOLLOWING_PROGRESS'
 
 export type InitialStateType = typeof initialState
-
-type UsersLocationType = {
-  city: string
-  country: string
-}
-
-export type UserType = {
-  id: number
-  photos: { large: string, small: string }
-  followed: boolean
-  name: string
-  status: string
-  location: UsersLocationType
-}
 
 const initialState = {
   users: [] as Array<UserType>,
