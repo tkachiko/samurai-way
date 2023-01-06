@@ -28,6 +28,7 @@ beforeEach(() => {
       photos: {small: 'afsfaf', large: 'asfafs'},
     } as ProfileType,
     status: '',
+    error: null as string | null,
   }
 })
 
