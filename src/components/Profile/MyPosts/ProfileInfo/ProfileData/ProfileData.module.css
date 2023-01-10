@@ -1,0 +1,113 @@
+/*  ProfileData  */
+.profileInfo {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+}
+
+li {
+  list-style: none;
+}
+
+.buttonEdit {
+  text-align: center;
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.buttonEdit button {
+  margin: 0;
+}
+
+.heading {
+  margin: 0;
+  display: inline;
+  color: #000;
+}
+
+.contacts {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.contactIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.contactIcon:hover {
+  filter: drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.45));
+}
+
+.contactsBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactsAbout {
+  display: inline;
+}
+
+.contactsAboutBlock {
+  display: inline;
+}
+
+.contactsDescription p,
+.contactsBlock p,
+.contactsJobBlock p {
+  margin: 0;
+  display: inline;
+}
+
+.formSummaryError {
+  color: red;
+}
+
+.contactIcon img {
+  width: 30px;
+}
+
+/*  ProfileDataForm  */
+.inputBlockContainer {
+  background-color: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 2rem;
+}
+
+.inputBlock:not(:last-child) {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.inputBlock:nth-child(2) {
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.headingForm {
+  display: block;
+}
+
+.contactsSocials {
+  margin-bottom: 1rem;
+}
+
+.lookingForAJob {
+  display: inline-block;
+  height: 1rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  width: 1rem;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="78.369" height="78.369" viewBox="0 0 78.369 78.369"><path fill="white" d="M78.05 19.015l-48.592 48.59c-.428.43-1.12.43-1.548 0L.32 40.016c-.427-.426-.427-1.12 0-1.547l6.704-6.704c.428-.427 1.12-.427 1.548 0l20.113 20.112 41.113-41.113c.43-.427 1.12-.427 1.548 0l6.703 6.704c.427.427.427 1.12 0 1.548z"/></svg>');
+  background-size: contain;
+  background-color: #000;
+  border: 2px solid #000;
+}
