@@ -2,13 +2,13 @@ import {v1} from 'uuid'
 import {ActionsTypes, PhotosType, PostType, ProfileType} from '../types/types'
 import {Dispatch} from 'redux'
 import {profileAPI} from '../api/api'
-import {STOP_SUBMIT, stopSubmit} from './auth-reducer'
 
 export const ADD_POST = 'social-network/profile/ADD_POST'
 export const SET_USER_PROFILE = 'social-network/profile/SET_USER_PROFILE'
 export const SET_STATUS = 'social-network/profile/SET_STATUS'
 export const SAVE_PHOTO_SUCCESS = 'social-network/profile/SAVE_PHOTO_SUCCESS'
 export const SAVE_PROFILE_SUCCESS = 'social-network/profile/SAVE_PROFILE_SUCCESS'
+export const STOP_SUBMIT = 'social-network/profile/STOP_SUBMIT'
 
 export type ProfilePageType = {
   posts: PostType[]
@@ -86,6 +86,8 @@ export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 export const updatePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
 export const saveProfileSuccess = (profile: ProfileType) => ({type: SAVE_PROFILE_SUCCESS, profile} as const)
+export const stopProfileSubmit = (error: string) => ({type: STOP_SUBMIT, error} as const)
+
 
 // thunk creators
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
@@ -111,17 +113,23 @@ export const updatePhoto = (file: File) => async (dispatch: Dispatch) => {
 export const saveProfile =
   (profile: ProfileType, setEditMode: (isEdit: boolean) => void) =>
     async (dispatch: any, getState: any) => {
-      const userId = getState().auth.userId
-      const response = await profileAPI.saveProfile(profile)
-      if (response.resultCode === 0) {
-        dispatch(getUserProfile(userId))
-        setEditMode(false)
-      } else {
-        let error =
-          response.messages.length > 0
-            ? response.messages[0]
-            : 'Some error'
-        dispatch(stopSubmit(error))
-        setEditMode(true)
+      try {
+        const userId = getState().auth.userId
+        const response = await profileAPI.saveProfile(profile)
+
+        if (response.resultCode === 0) {
+          dispatch(getUserProfile(userId))
+          setEditMode(false)
+        } else {
+          let error =
+            response.messages.length > 0
+              ? response.messages[0]
+              : 'Some error'
+          console.log(error)
+          dispatch(stopProfileSubmit(error))
+          setEditMode(true)
+        }
+      } catch (e) {
+        console.warn('Some error')
       }
     }

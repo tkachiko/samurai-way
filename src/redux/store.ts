@@ -20,6 +20,7 @@ type ProfilePageType = {
   posts: PostsDataType[]
   profile: ProfileType
   status: string
+  error: string | null
 }
 type DialogsPageType = {
   dialogs: DialogsDataType[]
@@ -49,6 +50,7 @@ const store: StoreType = {
       ],
       profile: {} as ProfileType,
       status: '',
+      error: null as string | null,
     },
     dialogsPage: {
       dialogs: [

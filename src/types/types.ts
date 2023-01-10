@@ -1,4 +1,11 @@
-import {addPost, setStatus, setUserProfile, updatePhotoSuccess} from '../redux/profile-reducer'
+import {
+  addPost,
+  saveProfileSuccess,
+  setStatus,
+  setUserProfile,
+  stopProfileSubmit,
+  updatePhotoSuccess,
+} from '../redux/profile-reducer'
 import {sendMessage} from '../redux/dialogs-reducer'
 import {
   followSuccess,
@@ -13,7 +20,7 @@ import {setAuthUserData, stopSubmit} from '../redux/auth-reducer'
 import {initializedSuccess} from '../redux/app-reducer'
 
 export type ActionsTypes =
-  ReturnType<typeof addPost>
+  | ReturnType<typeof addPost>
   | ReturnType<typeof sendMessage>
   | ReturnType<typeof followSuccess>
   | ReturnType<typeof unfollowSuccess>
@@ -28,6 +35,8 @@ export type ActionsTypes =
   | ReturnType<typeof initializedSuccess>
   | ReturnType<typeof stopSubmit>
   | ReturnType<typeof updatePhotoSuccess>
+  | ReturnType<typeof saveProfileSuccess>
+  | ReturnType<typeof stopProfileSubmit>
 
 export type PostType = {
   id: string
