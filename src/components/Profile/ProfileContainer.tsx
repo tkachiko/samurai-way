@@ -1,7 +1,7 @@
 import React, {ComponentType} from 'react'
 import {Profile} from './Profile'
 import {connect} from 'react-redux'
-import {getStatus, getUserProfile, updatePhoto, updateStatus} from '../../redux/profile-reducer'
+import {getStatus, getUserProfile, saveProfile, updatePhoto, updateStatus} from '../../redux/profile-reducer'
 import {RootStateType} from '../../redux/redux-store'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {WithAuthRedirect} from '../../hoc/WithAuthRedirect'
@@ -17,6 +17,7 @@ type MapStatePropsType = {
   status: string
   authorizedUserId: null | number
   isAuth: boolean
+  error: string | null
 }
 
 type MapDispatchPropsType = {
@@ -24,10 +25,11 @@ type MapDispatchPropsType = {
   getStatus: (status: string) => void
   updateStatus: (status: string) => void
   updatePhoto: (file: File) => void
+  saveProfile: (values: ProfileType, setEditMode: (value: boolean) => void) => void
 }
 
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
-type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
+type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType & { isSubmitting: boolean }
 
 class ProfileContainer extends React.Component<PropsType> {
   refreshProfile() {
@@ -59,12 +61,16 @@ class ProfileContainer extends React.Component<PropsType> {
                profile={this.props.profile}
                status={this.props.status}
                updateStatus={this.props.updateStatus}
-               updatePhoto={this.props.updatePhoto} />
+               updatePhoto={this.props.updatePhoto}
+               error={this.props.error}
+               saveProfile={this.props.saveProfile}
+      />
     )
   }
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
+  error: state.profilePage.error,
   profile: state.profilePage.profile,
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
@@ -72,7 +78,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
 })
 
 export default compose<ComponentType>(
-  connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, updatePhoto}),
+  connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, updatePhoto, saveProfile}),
   withRouter,
   WithAuthRedirect,
 )(ProfileContainer)

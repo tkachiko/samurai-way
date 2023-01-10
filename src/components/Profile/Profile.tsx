@@ -6,12 +6,22 @@ import {ProfileType} from '../../types/types'
 export type ProfilePropsType = {
   profile: ProfileType
   status: string
+  error: string | null
   isOwner: boolean
   updateStatus: (status: string) => void
   updatePhoto: (file: File) => void
+  saveProfile: (values: ProfileType, setEditMode: (value: boolean) => void) => void
 }
 
-export const Profile: FC<ProfilePropsType> = ({profile, status, updateStatus, isOwner, updatePhoto}) => {
+export const Profile: FC<ProfilePropsType> = ({
+                                                profile,
+                                                status,
+                                                updateStatus,
+                                                isOwner,
+                                                updatePhoto,
+                                                saveProfile,
+                                                error,
+                                              }) => {
 
   return (
     <div>
@@ -20,7 +30,10 @@ export const Profile: FC<ProfilePropsType> = ({profile, status, updateStatus, is
                      status={status}
                      updateStatus={updateStatus}
                      isOwner={isOwner}
-                     updatePhoto={updatePhoto} />
+                     error={error}
+                     updatePhoto={updatePhoto}
+                     saveProfile={saveProfile}
+        />
         <MyPostsContainer />
       </div>
     </div>
