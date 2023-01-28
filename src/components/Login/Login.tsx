@@ -6,19 +6,20 @@ import {Redirect} from 'react-router-dom'
 import {RootStateType} from '../../redux/redux-store'
 
 type LoginPropsType = {
-  login: (email: string, password: string, rememberMe: boolean) => void
+  login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
 }
 
 type MapStatePropsType = {
   isAuth: boolean
   errorMessage: null | string
+  captcha: string | null
 }
 
 type LoginOwnType = LoginPropsType & MapStatePropsType
 
 export const Login: React.FC<LoginOwnType> = (props) => {
   const onSubmit = (data: FormDataType) => {
-    props.login(data.email, data.password, data.rememberMe)
+    props.login(data.email, data.password, data.rememberMe, data.captcha)
   }
 
   if (props.isAuth) {
@@ -28,7 +29,7 @@ export const Login: React.FC<LoginOwnType> = (props) => {
   return (
     <>
       <h1>Login</h1>
-      <LoginForm onSubmit={onSubmit} errorMessage={props.errorMessage} />
+      <LoginForm onSubmit={onSubmit} errorMessage={props.errorMessage} captchaUrl={props.captcha} />
     </>
   )
 }
@@ -36,6 +37,7 @@ export const Login: React.FC<LoginOwnType> = (props) => {
 const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
   isAuth: state.auth.isAuth,
   errorMessage: state.auth.error,
+  captcha: state.auth.captchaUrl,
 })
 
 

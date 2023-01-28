@@ -16,7 +16,7 @@ import {
   toggleIsFetching,
   unfollowSuccess,
 } from '../redux/users-reducer'
-import {setAuthUserData, stopSubmit} from '../redux/auth-reducer'
+import {getCaptchaUrlSuccess, setAuthUserData, stopSubmit} from '../redux/auth-reducer'
 import {initializedSuccess} from '../redux/app-reducer'
 
 export type ActionsTypes =
@@ -37,6 +37,7 @@ export type ActionsTypes =
   | ReturnType<typeof updatePhotoSuccess>
   | ReturnType<typeof saveProfileSuccess>
   | ReturnType<typeof stopProfileSubmit>
+  | ReturnType<typeof getCaptchaUrlSuccess>
 
 export type PostType = {
   id: string

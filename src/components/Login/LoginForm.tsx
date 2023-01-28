@@ -5,12 +5,14 @@ import {SubmitHandler, useForm} from 'react-hook-form'
 type PropsType = {
   onSubmit: (data: FormDataType) => void
   errorMessage: null | string
+  captchaUrl: string | null
 }
 export type FormDataType = {
   email: string
   password: string
   rememberMe: boolean
   errorMessage: null | string
+  captcha: string | null
 }
 
 export const LoginForm: React.FC<PropsType> = (props) => {
@@ -24,6 +26,7 @@ export const LoginForm: React.FC<PropsType> = (props) => {
       email: '',
       password: '',
       rememberMe: false,
+      captcha: '',
     },
   })
 
@@ -64,6 +67,18 @@ export const LoginForm: React.FC<PropsType> = (props) => {
       <div className={styles.formSummaryError}>
         {props.errorMessage}
       </div>}
+    <div className={styles.captcha}>
+      {props.captchaUrl && <img src={props.captchaUrl} alt={'captcha'} />}
+    </div>
+
+    <div>
+      {props.captchaUrl && (
+        <input {...register('captcha')}
+               type={'text'}
+               placeholder={'Enter captcha'}
+               name="captcha" />
+      )}
+    </div>
     <div>
       <button type={'submit'}>Login</button>
     </div>
