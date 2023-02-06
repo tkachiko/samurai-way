@@ -49,8 +49,8 @@ class App extends React.Component<OwnPropsType> {
                    render={() => <UsersContainer />} />
             <Route path={'/login'}
                    render={() => <Login />} />
-            <Route path="*"
-                   render={() => <div>404 NOT FOUND</div>} />
+            {/*<Route path={'*'}*/}
+            {/*       render={() => <div>404 NOT FOUND</div>} />*/}
           </Suspense>
         </div>
       </div>
