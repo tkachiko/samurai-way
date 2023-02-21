@@ -1,7 +1,7 @@
 .nav {
+  background-color: darkslategrey;
   grid-column: 1/2;
   grid-row: 2/5;
-  background-color: darkslategrey;
 }
 
 .nav ul {
@@ -14,11 +14,11 @@
 }
 
 .item a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .item a.activeLink {
-  font-weight: bold;
   color: rosybrown;
+  font-weight: bold;
 }

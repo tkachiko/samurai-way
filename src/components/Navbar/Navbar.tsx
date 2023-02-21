@@ -8,7 +8,7 @@ export const Navbar = () => {
       <ul>
         <Link url={'/profile'} title={'Profile'} />
         <Link url={'/dialogs'} title={'Messages'} />
-        <Link url={'/users'} title={'Users'} />
+        <Link url={'/developers'} title={'Developers'} />
       </ul>
     </nav>
   )

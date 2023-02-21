@@ -1,21 +1,15 @@
 .header {
-  grid-column: 1/3;
-  grid-row: 1/2;
-  background-color: cadetblue;
-  display: flex;
-  justify-content: space-between;
+  background-color: #001529;
+  grid-area: h;
 }
 
 .header img {
-  width: 50px;
-  border: 1px solid transparent;
-  border-radius: 50%;
+  width: 20px;
 }
 
 .loginBlock {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  float: right;
+
 }
 
 .loginBlock a {
